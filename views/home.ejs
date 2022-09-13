@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD RSS FEED</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">CRUD RSS FEED</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="municipio">MUNICIPIOS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vivienda">VIVIENDAS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="persona">PERSONAS</a>
+            </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h4>Supongamos el siguiente universo del
+            discurso sobre municipios, viviendas y
+            personas. Cada persona sólo puede habitar en
+            una vivienda y ser residente en un municipio,
+            pero puede ser propietaria de varias
+            viviendas. Nos interesa también conocer las
+            personas que dependen del cabeza de familia
+            (C.F.).
+        </h4>
+        <a href="/municipio">
+            <button type="button" class="btn btn-primary" onclick="">MUNICIPIOS</button>
+        </a>
+        <a href="/vivienda">
+            <button type="button" class="btn btn-primary">VIVIENDAS</button>
+        </a>
+        <a href="/persona">
+            <button type="button" class="btn btn-primary">PERSONAS</button>
+        </a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

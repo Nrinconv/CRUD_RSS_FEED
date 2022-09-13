@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD RSS FEED</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <div class="container">
+        <a class="navbar-brand" href="/">CRUD RSS FEED</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="municipio">MUNICIPIOS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vivienda">VIVIENDAS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="persona">PERSONAS</a>
+            </li>
+            </ul>
+        </div>
+       </div>
+    </nav>
+
+    <div class="container">
+      <a href="/vivienda/create" class="btn btn-outline-primary mt-6"><i class="bi bi-plus-lg"></i></a>
+      <table class="table table-bordered table-striped text-center mt-4">
+        <thead>
+          <tr class="bg-primary text-white">
+            <th scope="col">ID</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">ID Municipio</th>
+            <th scope="col">Municipio</th>
+            <th scope="col">ID Propietario</th>
+            <th scope="col">Propietario</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resultsVivienda.forEach((vivienda)=> { %>
+            <tr>
+              <td><%= vivienda.idVivienda %></td>
+              <td><%= vivienda.direccion %></td>
+              <td><%= vivienda.idMunicipio %></td>
+              <td><%= vivienda.nombre_municipio %></td>
+              <td>
+                <% if (vivienda.id_propietario > 0) { %>
+                  <% resultsPersona.forEach((persona)=> { %>
+                    <% if (vivienda.id_propietario == persona.idPersona) { %>
+                      <%= vivienda.id_propietario %>
+                    <% } %>
+                  <% }) %>
+                <% } else { %>
+                  <%= %>
+                <% } %>
+              </td>
+              <td>
+                <% if (vivienda.id_propietario > 0) { %>
+                  <% resultsPersona.forEach((persona)=> { %>
+                    <% if (vivienda.id_propietario == persona.idPersona) { %>
+                      <%= persona.nombre_persona %>
+                    <% } %>
+                  <% }) %>
+                <% } else { %>
+                  <%= 'No tiene' %>
+                <% } %>
+              </td>
+              <td>
+                <a href="/vivienda/edit/<%= vivienda.idVivienda %>" class="btn btn-outline-success mt-6"><i class="bi bi-pencil-square"></i></a>
+                <a href="/vivienda/delete/<%= vivienda.idVivienda %>" class="btn btn-outline-danger mt-6"><i class="bi bi-trash-fill"></i></i></a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

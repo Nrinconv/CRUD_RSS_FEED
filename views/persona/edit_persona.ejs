@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD RSS FEED</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">CRUD RSS FEED</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link" href="municipio">MUNICIPIOS</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="vivienda">VIVIENDAS</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="persona">PERSONAS</a>
+              </li>
+              </ul>
+          </div>
+      </nav>
+    </div>
+    <% if (persona) { %>
+        <div class="container">
+            <h2>EDITAR PERSONA</h2>
+              <form class="row g-3" action="/updatePersona" method="POST">
+                    <input id="idPersona" name="idPersona" value="<%= persona.idPersona %>" hidden>
+                    <div class="col-4">
+                        <label for="inputName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputName" name="inputName" value="<%= persona.nombre_persona %>">
+                    </div>
+                    <div class=" col-12 input-group mb-3">
+                        <label class="col-3 input-group-text" for="inputGroupSelect03">¿Es cabeza de familia?</label>
+                        <select class="col-2 form-select" id="cabeza_familiar" name="cabeza_familiar">
+                            <option selected value="<%= persona.cabeza_familiar %>">
+                                <% if (persona.cabeza_familiar == 1) { %>
+                                    <%= 'SI' %>
+                                <% } else { %>
+                                    <%= 'NO' %>
+                                <% } %>
+                            </option>
+                            <option value="1">SI</option>
+                            <option value="0">NO</option>
+                        </select>    
+                    </div>
+                    <div class=" col-12 input-group mb-3">
+                        <label class="col-3 input-group-text" for="inputGroupSelect04">¿Depende de la cabeza de familia?</label>
+                        <select class="col-2 form-select" id="dependencia" name="dependencia">
+                            <option selected value="<%= persona.dependencia %>">
+                                <% if (persona.dependencia == 1) { %>
+                                    <%= 'SI' %>
+                                <% } else { %>
+                                    <%= 'NO' %>
+                                <% } %>
+                            </option>
+                            <option value="1">SI</option>
+                            <option value="0">NO</option>
+                        </select>    
+                    </div>
+                    <div class=" col-12 input-group mb-3">
+                        <label class="col-2 input-group-text" for="inputGroupSelect01">Municipio</label>
+                        <select class="col-2 form-select" id="id_municipio" name="id_municipio">
+                            <option value="<%= persona.Municipio_idMunicipio %>" selected>
+                                <% resultsMunicipio.forEach((municipio)=> { %>
+                                    <% if (persona.Municipio_idMunicipio == municipio.idMunicipio) { %>
+                                      <%= municipio.nombre_municipio %>
+                                    <% } %>
+                                <% }) %>
+                            </option>
+                            <% resultsMunicipio.forEach((municipio)=> { %>
+                                <option value="<%= municipio.idMunicipio %>"><%= municipio.nombre_municipio %></option>
+                            <% }) %>
+                        </select>    
+                    </div>
+                    <div class=" col-12 input-group mb-3">
+                        <label class="col-2 input-group-text" for="inputGroupSelect02">Vivienda</label>
+                        <select class="col-2 form-select" id="id_vivienda" name="id_vivienda">
+                            <option value="<%= persona.Vivienda_id_vivienda %>" selected>
+                                <% resultsVivienda.forEach((vivienda)=> { %>
+                                    <% if (persona.Vivienda_id_vivienda == vivienda.idVivienda) { %>
+                                      <%= vivienda.direccion %>
+                                    <% } %>
+                                <% }) %>
+                            </option>
+                            <% resultsVivienda.forEach((vivienda)=> { %>
+                                <option value="<%= vivienda.idVivienda %>"><%= vivienda.direccion %></option>
+                            <% }) %>
+                        </select>    
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Actualizar persona</button>
+                    </div>
+                </form>
+          </div>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
