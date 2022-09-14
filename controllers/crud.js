@@ -14,7 +14,7 @@ exports.saveMunicipio = (req, res)=>{
 exports.updateMunicipio = (req, res)=>{
     const idMunicipio = req.body.idMunicipio;
     const inputNameMunicipio = req.body.inputNameMunicipio;
-    connection.query('UPDATE municipio SET ? WHERE idMunicipio = ?', [{nombre:inputNameMunicipio}, idMunicipio], (error, results) => {
+    connection.query('UPDATE municipio SET ? WHERE idMunicipio = ?', [{nombre_municipio:inputNameMunicipio}, idMunicipio], (error, results) => {
         if(error){
             console.log(error);
         }else{
